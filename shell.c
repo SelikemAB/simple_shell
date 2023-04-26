@@ -10,12 +10,11 @@
  */
 int main(int argc, char **argv, char **env)
 {
-	char *line_read = NULL, *token, *path, *args[64];
+	char *line_read = NULL, *args[64];
 	char path_env[1024], *command_path;
-	int i, status;
 	size_t n = 64;
 
-	while (1)
+	while (argc + 1)
 	{
 		_strcpy(path_env, _getenv("PATH"));
 		write(STDOUT_FILENO, "$ ", 2);
@@ -31,7 +30,7 @@ int main(int argc, char **argv, char **env)
 		if (_strcmp(args[0], "exit") == 0)
 			exit(EXIT_SUCCESS);
 
-		char *command_path = find_command(args, path_env);
+		command_path = find_command(args, path_env);
 
 		if (command_path == NULL)
 			p_error(argv[0], args[0]);
