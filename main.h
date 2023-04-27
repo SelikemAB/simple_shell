@@ -11,6 +11,17 @@
 #define MAX_COMMAND_LEN 100
 #define INITIAL_BUFFER_SIZE 120
 
+typedef struct data
+{
+	char **av;
+	char *input;
+	char **args;
+	int status;
+	int counter;
+	char **_environ;
+	char *pid;
+} data_shell;
+
 /*getenv*/
 extern char **environ;
 char *_getenv(const char *name);
@@ -41,4 +52,8 @@ int _strlen(const char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_memcpy(char *dest, char *src, unsigned int n);
 
+void cd_dot(data_shell *datash);
+void cd_to(data_shell *datash);
+void cd_previous(data_shell *datash);
+void cd_to_home(data_shell *datash);
 #endif /*MAIN_HEADER*/
